@@ -1,0 +1,106 @@
+ID,styles,Similarities,time period,functionality,traffic,horizontal,vertical,dynamic,shape,details,orientation,lighting,intensity,fixtures,vibrancy,statement,tone,finish,feel,ambience,prints,style
+1,Abstract,"Modern, Contemporary",4,4,4,4,2,5,1,5,5,4,3,4,5,5,5,5,5,2,5,2
+2,American colonialism,"Traditional, Rustic",1,1,2,1,1,4,2,1,3,3,3,4,4,1,4,1,4,1,2,4
+3,Amish,Minimal,4,5,5,2,3,3,2,5,1,1,3,4,4,3,3,1,3,2,3,1
+4,African,Minimal,4,3,3,4,2,3,4,5,3,2,2,3,3,3,2,1,2,3,3,3
+5,Arabian,,4,1,1,2,5,2,1,1,1,3,3,5,1,5,1,5,5,3,1,5
+6,Art Deco,French,4,2,3,2,2,3,2,2,3,4,3,4,4,5,3,5,3,1,2,5
+7,Art Modern,"Mid century modern, Modern, Minimalism",5,3,3,2,2,4,3,3,4,4,3,3,5,4,3,5,3,3,5,1
+8,Art Nouveau,"Art Deco, Contemporary",3,2,4,2,1,4,3,2,4,3,4,3,3,5,3,5,4,2,2,5
+9,Artisan,"Rustic, Traditional",3,2,3,3,3,4,2,2,2,3,2,2,4,3,3,3,4,2,4,4
+10,Arts and Craft,"Art nouveau, Artisan",3,2,3,3,3,3,2,3,2,4,2,2,4,3,2,5,4,2,4,4
+11,Asian,"Contemporary, Minimal",4,5,5,2,4,5,3,5,2,2,2,5,5,1,4,3,4,1,3,3
+12,Baroque,European,1,1,2,2,2,3,1,2,1,3,3,4,4,4,2,3,4,3,2,4
+13,Bauhaus,"Modern, Minimal",4,5,5,3,3,5,3,3,2,2,3,5,3,2,3,3,3,2,3,2
+14,Beach house,"Coastal, Rustic",5,3,3,3,2,4,4,4,4,1,1,5,4,1,5,2,4,1,4,2
+15,Bohemian,Shabby Chic,3,1,1,5,4,2,3,3,3,3,3,3,1,4,2,4,3,3,2,4
+16,Brazilian,,5,4,3,5,3,5,4,4,3,2,3,3,4,2,4,2,3,1,3,3
+17,British Colonial,,3,2,3,1,3,4,2,2,2,2,2,4,4,1,2,2,4,1,1,4
+18,Carolean,"Baroque, Old world, Modern",1,2,2,2,3,4,3,2,2,3,3,4,4,3,3,3,4,3,1,4
+19,Chinese,"Asian, Zen",3,5,4,2,5,5,2,3,1,2,3,5,4,3,4,4,5,1,3,3
+20,Chippendale,"Gothic, Rococo, Chinese",2,2,4,3,1,3,1,1,1,3,4,5,3,5,4,4,4,4,2,4
+21,Coastal,,5,3,3,4,2,4,4,4,3,1,1,3,3,2,5,2,3,1,3,2
+22,Commonwealth,Bauhaus,1,5,5,2,4,5,4,4,2,2,3,5,3,2,2,2,3,2,3,2
+23,Contemporary,"Modern, Eclectic",5,3,3,3,2,4,2,4,4,4,3,4,4,4,4,5,4,2,5,3
+24,Cool Britannia,,5,1,1,5,2,2,1,2,2,5,5,5,5,5,1,5,5,5,3,3
+25,Cottage,Coastal,5,3,3,4,2,5,4,4,2,1,1,2,2,2,5,2,2,1,2,2
+26,Country,Cottage,5,3,2,4,3,4,5,4,3,2,2,3,3,3,3,1,1,1,1,3
+27,Danish,"Modern, Contemporary, Minimal",4,5,5,3,2,5,3,5,4,2,3,5,5,1,5,3,4,1,5,1
+28,Directoire,"Greek, Italian, Neoclassical",2,1,2,2,2,4,1,2,3,3,3,2,3,4,1,4,4,2,2,5
+29,Dutch Renaissance,"Art Nouveau, European, Organic",1,2,3,2,3,5,3,2,2,2,3,3,4,3,3,3,3,2,2,4
+30,Eclectic,"Modern, Vintage, Bohemian",4,4,4,3,3,3,2,4,4,4,3,4,2,4,5,5,5,3,3,3
+31,Egyptian,,1,1,1,3,4,2,1,1,2,2,4,4,1,5,1,1,4,5,1,5
+32,Elizabethan,European,1,2,3,2,4,4,2,2,2,4,3,2,3,4,2,3,3,3,2,4
+33,Empire,"Neoclassical, Directoire",2,1,2,2,2,3,1,2,1,3,3,1,3,3,1,4,4,3,1,5
+34,English,Traditional,2,2,2,2,3,4,2,2,2,3,2,3,3,2,3,3,4,2,2,4
+35,English Country,,2,3,4,4,4,5,3,4,2,1,1,4,5,1,5,4,5,1,1,2
+36,European,"Traditional, Contemporary",3,2,3,3,3,4,2,2,3,4,2,3,4,3,3,3,3,2,2,3
+37,Exploration,"British Colonial, Old world, Vintage",4,2,3,1,3,2,2,2,1,2,3,4,4,4,2,2,4,3,1,5
+38,Farmhouse,Cottage,3,3,3,4,2,5,4,4,2,1,1,3,3,2,5,2,2,1,3,2
+39,Finnish,Modernist,4,4,5,2,2,4,3,5,2,3,3,4,4,2,4,3,3,3,5,2
+40,Flemish,"Dutch Renaissance, Rustic",4,3,3,2,3,5,3,3,2,3,3,3,5,1,4,3,3,2,3,3
+41,French,,3,1,2,1,2,4,1,1,1,5,1,3,4,3,3,5,3,1,1,5
+42,French Provincial,,2,4,3,3,1,5,4,4,1,3,3,4,5,1,5,3,3,2,3,3
+43,Georgian,,2,1,1,1,1,3,1,1,1,4,4,1,4,2,4,5,4,3,1,5
+44,Gothic,Italian,3,2,2,2,2,4,2,1,2,2,3,2,4,4,1,3,2,3,1,4
+45,Greek,"Egyptian, Mediterranean",3,2,2,3,1,3,4,1,2,2,2,3,1,5,1,3,4,3,1,5
+46,Indian,Arabian,5,1,1,3,4,2,1,1,1,3,3,3,1,5,1,5,4,3,1,5
+47,Industrial,"Modern, Vintage",5,4,4,4,2,2,4,5,4,2,4,3,5,3,3,1,1,4,5,3
+48,Italian,"Neoclassical, Mediterranean, Old world",3,1,1,2,1,3,4,2,2,1,2,2,1,4,1,1,3,2,2,4
+49,Jacobean,Renaissance,1,1,2,1,1,5,1,1,1,5,5,1,4,2,1,3,3,3,1,5
+50,Japanese,Minimal,3,5,5,2,3,5,4,5,2,2,2,5,5,1,5,2,4,1,3,1
+51,Lake House,"Coastal, Cottage",5,3,4,4,2,5,4,4,3,1,1,4,4,1,5,2,3,1,2,4
+52,Machine Age,"Mid century modern, Industrial",4,3,3,4,2,2,4,5,4,4,4,3,4,4,2,1,1,4,3,3
+53,Medieval,Gothic,1,1,2,1,4,3,2,1,1,3,3,2,3,3,1,2,3,4,1,5
+54,Mediterannean,"Greek, Italian, Tuscan, Rustic",4,2,2,2,1,3,4,2,2,2,2,3,1,5,1,1,4,2,1,5
+55,Memphis,"Post-Modern, Mid century modern, minimalism",5,1,5,4,3,3,2,5,4,5,2,5,1,5,2,5,5,3,5,3
+56,Mexican,"Eclectic, Tuscan",1,2,2,3,3,4,2,3,3,3,3,2,2,4,1,4,3,3,2,5
+57,Mid century modern,,4,3,3,2,2,5,2,4,4,3,2,4,4,4,3,4,5,1,3,3
+58,Minimal,"Zen, Japanese",5,5,5,2,3,5,2,5,2,2,2,5,5,1,5,3,4,1,5,1
+59,Mission,Arts and Craft,3,3,3,3,3,3,4,4,2,3,2,2,4,3,2,2,3,2,3,3
+60,Modern,"Minimal, Scandinavian, Bauhaus",4,4,4,3,3,4,2,5,4,3,3,4,5,4,5,4,4,3,5,3
+61,Modernist,Minimal,4,4,5,2,3,4,2,5,2,3,3,4,4,3,4,4,4,2,5,2
+62,Moroccan,"Bohemian, eclectic",3,1,1,5,3,2,2,3,3,3,3,3,1,5,2,5,4,5,2,4
+63,Nautical,"Beach house, Coastal",5,3,3,4,2,4,4,4,3,1,1,3,3,2,5,2,3,1,3,2
+64,Neoclassical,"Greek, Italian",2,1,1,2,1,4,1,2,1,3,3,2,5,4,4,1,3,2,1,5
+65,Northwestern,"Modern, Traditional",3,2,2,3,2,3,2,5,4,2,2,4,1,4,2,3,4,3,3,3
+66,Old world,"European, Medieval, Renaissance, Traditional, Rustic",1,1,2,1,1,3,2,1,1,3,3,2,2,5,1,4,3,2,1,5
+67,Organic,,4,5,5,4,2,5,5,5,4,1,1,5,5,1,5,1,1,1,5,2
+68,Palladian,"Greek, Italian",2,2,2,2,1,3,1,2,2,2,2,3,5,3,5,3,4,2,2,4
+69,Parisian,"Eclectic, Traditional, Modern",4,2,2,2,3,4,2,1,3,3,2,2,2,4,3,4,4,3,2,4
+70,Pennsylvania Dutch,"Rustic, Farmhouse, Amish",2,3,3,3,3,3,2,5,3,2,3,3,3,3,3,2,3,2,3,3
+71,Plantation,British Colonial,3,2,3,1,3,4,2,2,2,2,2,4,4,2,2,2,3,1,2,4
+72,Post Modern,Contemporary,5,2,2,3,2,3,2,3,3,5,2,3,1,5,3,5,3,3,4,2
+73,Puritan,"Traditional, Farmhouse",3,3,3,3,4,5,3,1,2,2,3,3,5,2,2,2,3,1,2,4
+74,Queen Anne,"Victorian, British Colonial",3,1,2,1,2,4,2,1,3,2,2,1,4,5,2,3,4,1,1,5
+75,Regal,,3,1,1,1,3,5,2,1,1,3,3,1,1,5,1,5,5,1,1,5
+76,Regence,French,2,1,2,1,2,4,1,1,2,3,1,2,2,3,4,5,5,1,1,5
+77,Regency,,4,1,1,4,3,2,1,1,2,5,1,1,1,5,1,5,5,5,1,5
+78,Renaissance,European,1,1,2,2,2,5,2,1,2,1,4,2,3,4,2,3,4,2,2,4
+79,Retro,"Vintage, Eclectic, Bohemian",5,3,3,5,3,2,2,4,3,3,3,3,1,5,2,5,5,3,3,3
+80,Revival,"Greek, Gothic, Egyptian, Rococo",3,2,2,3,3,3,1,1,2,2,2,2,4,3,2,3,5,3,2,4
+81,Rietveld,Arts and Craft,4,4,3,4,3,3,2,4,2,4,2,4,3,4,2,5,4,2,4,2
+82,Rococo,"French, Baroque, Asian",2,1,2,2,2,5,1,1,4,2,2,3,4,3,4,4,4,1,1,4
+83,Romantic,,3,3,3,3,4,4,3,3,4,2,4,4,3,1,4,5,3,2,3,3
+84,Russian,Country,3,3,3,3,3,4,1,2,3,2,2,3,1,3,1,3,3,3,2,3
+85,Rustic,Romantic,3,3,3,3,1,3,3,3,4,2,2,4,5,1,4,1,3,2,3,3
+86,Scandinavian,"Russian, Rustic",5,5,5,2,2,4,2,4,3,2,2,4,5,2,4,3,3,2,4,2
+87,Shabby Chic,"Rustic, French Provencial, Cottage",5,3,2,4,2,3,3,3,3,3,3,3,2,2,4,3,3,2,2,3
+88,Shaker,,3,4,5,3,3,4,2,5,2,4,3,4,4,2,4,5,5,2,3,3
+89,Southwestern,,4,2,2,4,3,2,4,3,3,3,2,2,1,5,1,2,2,4,2,4
+90,Space Age,"Retro, Mid century modern",5,2,2,5,4,2,2,4,3,4,4,4,1,5,2,5,5,4,4,4
+91,Spanish Renaissance,"Renaissance, Mediterranean",1,2,2,1,2,5,2,1,1,2,3,2,2,4,1,3,4,2,1,5
+92,Steampunk,"Industrial, Machine age, Vintage",4,3,3,4,3,2,2,5,3,4,5,3,2,5,2,4,1,4,2,4
+93,Swedish,"Modern, MInimal",4,5,5,3,3,5,4,5,4,3,3,5,5,2,4,3,3,1,5,1
+94,Traditional,"Tudor, Regence, Georgian",1,2,2,2,2,3,2,1,3,3,2,2,5,2,3,2,4,2,2,4
+95,Transitional,"Traditional, Contemporary",5,3,3,3,3,5,1,4,1,3,3,4,1,4,1,5,4,2,3,3
+96,Tropical,"Beach house, French Provencial",4,3,3,3,2,4,4,4,4,1,1,5,3,3,1,2,4,2,3,3
+97,Tudor,Medieval,1,1,2,1,2,3,2,1,1,3,3,2,3,4,1,2,3,3,1,5
+98,Tuscan,Mediterranean,4,2,2,1,1,5,1,1,1,2,5,2,4,5,1,1,4,2,1,5
+99,Urban,Industrial,5,4,4,4,4,2,4,5,4,2,4,3,3,4,3,1,1,4,5,3
+100,Venetian,Gothic,4,2,2,2,2,4,2,1,2,2,3,2,3,4,1,4,3,2,1,4
+101,Victorian,Regal,3,1,1,1,3,4,2,1,2,3,3,1,3,5,1,3,3,1,1,5
+102,Vintage,"Eclectic, Vintage",5,3,3,3,3,2,2,4,3,4,5,3,1,5,3,4,4,3,2,3
+103,Western,"Rustic, Tuscan",3,2,2,2,2,3,2,1,1,2,3,2,4,5,1,1,4,2,1,5
+104,William & Mary,,2,2,2,2,3,4,1,2,2,3,3,2,4,3,2,3,3,3,1,5
+105,Zen,Japanese,3,5,5,1,3,5,3,5,2,2,2,5,5,1,5,2,4,1,4,1
