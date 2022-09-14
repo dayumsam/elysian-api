@@ -1,4 +1,7 @@
 __pycache__/
 .venv/
 styles/
+flask_session/
 .env
+*.csv
+*.db
