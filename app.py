@@ -9,6 +9,7 @@ from flask_cors import CORS, cross_origin
 from dataclasses import dataclass
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
+from sqlalchemy.orm import close_all_sessions
 
 import pandas as pd
 import numpy as np
@@ -167,12 +168,7 @@ def index():
         "result" : result, 
         "output": output
         }
+    
+    close_all_sessions()
 
     return make_response(data, 200)
-
-
-@app.route('/get_result', methods = ['POST'])
-def setContact():
-    data = session.get("pref")
-    print(data)
-    return data
