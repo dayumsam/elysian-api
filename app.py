@@ -24,7 +24,10 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+
+SQLALCHEMY_ENGINE_OPTIONS = {'pool_size': 3, 'max_overflow': 2}
 db = SQLAlchemy(app)
+
 cors = CORS(app)
 
 class Styles(db.Model):
@@ -104,6 +107,7 @@ class Contact(db.Model):
 @cross_origin()
 def images():
     images = Images.query.order_by(func.random()).all()
+    db.session.close()
     return jsonify(images)
 
 def generateResult(dataset):
@@ -169,6 +173,6 @@ def index():
         "output": output
         }
     
-    close_all_sessions()
+    db.session.close()
 
     return make_response(data, 200)
