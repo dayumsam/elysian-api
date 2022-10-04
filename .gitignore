@@ -3,5 +3,6 @@ __pycache__/
 styles/
 flask_session/
 .env
+credentials.json
 *.csv
 *.db

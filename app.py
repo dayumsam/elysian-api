@@ -1,107 +1,43 @@
 import os
-import sqlite3
 import json
-from flask import Flask, render_template, jsonify, request, make_response, session
-from flask_session import Session
 
+from dotenv import load_dotenv
+
+from flask import Flask, jsonify, request, make_response
+
+# Handle cors requests
 from flask_cors import CORS, cross_origin
 
-from dataclasses import dataclass
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
-from sqlalchemy.orm import close_all_sessions
+# Import DB models
+from models import db, Styles, Suggestion, Images, Contact
 
+# from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
+from sqlalchemy.pool import NullPool
+
+# For data hadling
 import pandas as pd
 import numpy as np
 
 from imagekitio import ImageKit
-from dotenv import load_dotenv
+
+# Google Sheets API Setup
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
+
 app.secret_key = '}>0q~A>cDk_fZ37kO"8BY9fA(zZ1>{5Wfq0Sdc-M?=a{3s@ew2ik/+F?U)9LnlI'
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_ENGINE_OPPTIONS'] = {
+    'poolclass': NullPool,
+}
 
-SQLALCHEMY_ENGINE_OPTIONS = {'pool_size': 3, 'max_overflow': 2}
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
+db.init_app(app)
 
 cors = CORS(app)
-
-class Styles(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    styles = db.Column(db.String())
-    timeperiod = db.Column(db.Integer)
-    functionality = db.Column(db.Integer)
-    traffic = db.Column(db.Integer)
-    horizontal = db.Column(db.Integer)
-    vertical = db.Column(db.Integer)
-    dynamic = db.Column(db.Integer)
-    shape = db.Column(db.Integer)
-    details = db.Column(db.Integer)
-    orientation = db.Column(db.Integer)
-    lighting = db.Column(db.Integer)
-    intensity = db.Column(db.Integer)
-    fixtures = db.Column(db.Integer)
-    vibrancy = db.Column(db.Integer)
-    statement = db.Column(db.Integer)
-    tone = db.Column(db.Integer)
-    finish = db.Column(db.Integer)
-    feel = db.Column(db.Integer)
-    ambience = db.Column(db.Integer)
-    prints = db.Column(db.Integer)
-    style = db.Column(db.Integer)
-
-    def __repr__(self):
-        return '<Styles %r>' % self.styles
-
-@dataclass
-class Suggestion(db.Model):
-    id: int
-    styles: str
-    overview: str
-    details: str
-    tip_1: str
-    tip_2: str
-    tip_3: str
-    tip_4: str
-    tip_5: str
-    tip_6: str
-
-    id = db.Column(db.Integer, primary_key=True)
-    styles = db.Column(db.String())
-    overview = db.Column(db.String())
-    details = db.Column(db.String())
-    tip_1 = db.Column(db.String())
-    tip_2 = db.Column(db.String())
-    tip_3 = db.Column(db.String())
-    tip_4 = db.Column(db.String())
-    tip_5 = db.Column(db.String())
-    tip_6 = db.Column(db.String())
-
-
-@dataclass
-class Images(db.Model):
-    id: int
-    fileId: str
-    url: str
-    tags: str
-
-    id = db.Column(db.Integer, primary_key=True)
-    fileId = db.Column(db.String(50))
-    url = db.Column(db.String(500))
-    tags = db.Column(db.String(50))
-
-
-class Contact(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    fname = db.Column(db.String())
-    lname = db.Column(db.String())
-    email = db.Column(db.String())
-    style = db.Column(db.String())
-
 
 @app.route('/get_image')
 @cross_origin()
@@ -134,7 +70,7 @@ def generateResult(dataset):
 
     model =  pd.concat([model.T , store]).T.sort_values(by=0, ascending=False)
 
-    result = model.iloc[0: 3]
+    result = model.iloc[0:3]
     result = result.styles.values.tolist()
 
     return result
@@ -152,27 +88,41 @@ def generatePageData(style):
 
 @app.route('/generate_result', methods = ['POST'])
 def index():
-    dataset = request.json['data']
-    contact = request.json['contact']
 
-    print(contact)
+    # Get data from the request
+    dataset = request.json['data'] # Selected styles
+    contact = request.json['contact'] # Contact Info
 
-    result = generateResult(dataset)
+    # Generate Result
+    result = generateResult(dataset) # Generate preferred result
 
-    newUser = Contact(fname=contact['fname'], lname=contact['lname'], email=contact['email'], style=result[0] )
+    # Create a new user
+    newUser = Contact(fname=contact['fname'], lname=contact['lname'], email=contact['email'], style=result[0])
+
+    # Add user to the database
     db.session.add(newUser)
     db.session.commit()
+    db.session.close()
 
+    # # Open the google sheet
+    credential = ServiceAccountCredentials.from_json_keyfile_name("credentials.json")
+
+    client = gspread.authorize(credential)
+    gsheet = client.open("Find your style | Elysian").sheet1
+
+    # # Insert data into the row
+    row = [contact['fname'], contact['lname'], contact['email'], result[0]]
+    gsheet.append_row(row) # Append a new row to the sheet
+
+    # Generate output
     output = []
 
     for i in result:
-        output.append(generatePageData(i))
+        output.append(generatePageData(i)) # Generate style data
 
     data = {
         "result" : result, 
         "output": output
         }
-    
-    db.session.close()
 
     return make_response(data, 200)
