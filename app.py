@@ -19,65 +19,74 @@ from sqlalchemy.pool import NullPool
 import pandas as pd
 import numpy as np
 
-from imagekitio import ImageKit
-
 # Google Sheets API Setup
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
 
-app.secret_key = '}>0q~A>cDk_fZ37kO"8BY9fA(zZ1>{5Wfq0Sdc-M?=a{3s@ew2ik/+F?U)9LnlI'
+app.secret_key = os.getenv('SECRET_KEY')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_ENGINE_OPPTIONS'] = {
     'poolclass': NullPool,
 }
 
-# db = SQLAlchemy(app)
 db.init_app(app)
-
 cors = CORS(app)
+
+# Get the image URLs from the database
+
 
 @app.route('/get_image')
 @cross_origin()
 def images():
+    # Fetch images in random order form the database
     images = Images.query.order_by(func.random()).all()
-    db.session.close()
-    return jsonify(images)
+    db.session.close()  # Close session after request
+    return jsonify(images)  # returning JSON as the API response
 
+
+# Generate preferred style
 def generateResult(dataset):
-    sql = '''SELECT * FROM styles'''
+    # dataset: ["style1", "style2", "style3", ...]
+    # an array with selected styles
+
+    sql = '''SELECT * FROM styles'''  # SQL Query
     conn = db.engine.connect().connection
 
+    # importing data as a pandas dataframe
     model = pd.read_sql(sql, conn)
 
     dataPrams = []
 
     for i in dataset:
-
+        # Query individual styles form the model
         obj = model.query('styles=="%s"' % i.lower())
-        obj = obj.drop(obj.columns[[0,1]], axis=1)
-        
+        obj = obj.drop(obj.columns[[0, 1]], axis=1)  # TODO
+
         dataPrams.append(obj)
 
     store = pd.concat(dataPrams, ignore_index=True)
     store = store.mode().iloc[:1]
 
-    store = model.drop(model.columns[[0,1]], axis=1) - store.values.tolist()[0]
+    store = model.drop(model.columns[[0, 1]],
+                       axis=1) - store.values.tolist()[0]
     store = store.T.apply(pd.Series.value_counts)
     store = store.loc[[0]]
 
-    model =  pd.concat([model.T , store]).T.sort_values(by=0, ascending=False)
+    model = pd.concat([model.T, store]).T.sort_values(by=0, ascending=False)
 
     result = model.iloc[0:3]
     result = result.styles.values.tolist()
 
     return result
 
+
 def generatePageData(style):
+    # Gets images and style recommendations
     result = Suggestion.query.filter_by(styles=style).first()
-    photo =  Images.query.filter_by(tags=style).limit(3).all()
+    photo = Images.query.filter_by(tags=style).limit(3).all()
 
     data = {
         'content': result,
@@ -86,18 +95,20 @@ def generatePageData(style):
 
     return data
 
-@app.route('/generate_result', methods = ['POST'])
+
+@app.route('/generate_result', methods=['POST'])
 def index():
 
     # Get data from the request
-    dataset = request.json['data'] # Selected styles
-    contact = request.json['contact'] # Contact Info
+    dataset = request.json['data']  # Selected styles
+    contact = request.json['contact']  # Contact Info
 
     # Generate Result
-    result = generateResult(dataset) # Generate preferred result
+    result = generateResult(dataset)  # Generate preferred result
 
     # Create a new user
-    newUser = Contact(fname=contact['fname'], lname=contact['lname'], email=contact['email'], style=result[0])
+    newUser = Contact(
+        fname=contact['fname'], lname=contact['lname'], email=contact['email'], style=result[0])
 
     # Add user to the database
     db.session.add(newUser)
@@ -105,24 +116,25 @@ def index():
     db.session.close()
 
     # # Open the google sheet
-    credential = ServiceAccountCredentials.from_json_keyfile_name("credentials.json")
+    credential = ServiceAccountCredentials.from_json_keyfile_name(
+        "credentials.json")
 
     client = gspread.authorize(credential)
     gsheet = client.open("Find your style | Elysian").sheet1
 
     # # Insert data into the row
     row = [contact['fname'], contact['lname'], contact['email'], result[0]]
-    gsheet.append_row(row) # Append a new row to the sheet
+    gsheet.append_row(row)  # Append a new row to the sheet
 
     # Generate output
     output = []
 
     for i in result:
-        output.append(generatePageData(i)) # Generate style data
+        output.append(generatePageData(i))  # Generate style data
 
     data = {
-        "result" : result, 
+        "result": result,
         "output": output
-        }
+    }
 
     return make_response(data, 200)
