@@ -1,6 +1,8 @@
 import os
 import json
 
+import random
+
 from dotenv import load_dotenv
 
 from flask import Flask, jsonify, request, make_response
@@ -23,6 +25,8 @@ import numpy as np
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+from imagekitio import ImageKit
+
 app = Flask(__name__)
 
 app.secret_key = os.getenv('SECRET_KEY')
@@ -35,19 +39,34 @@ app.config['SQLALCHEMY_ENGINE_OPPTIONS'] = {
 db.init_app(app)
 cors = CORS(app)
 
+# imagekit initialization
+imagekit = ImageKit(
+    public_key=os.getenv('IMAGE_KIT_PUBLIC_KEY'),
+    private_key=os.getenv('IMAGE_KIT_PRIVATE_KEY'),
+    url_endpoint=os.getenv('IMAGE_KIT_URL')
+)
+
 # Get the image URLs from the database
 
 
-@app.route('/get_image')
+@app.route('/images')
 @cross_origin()
-def images():
-    # Fetch images in random order form the database
-    images = Images.query.order_by(func.random()).all()
-    db.session.close()  # Close session after request
+def getImage():
+
+    # Fetch file options
+    options = {
+        'path': '/elysian',
+    }
+
+    images = imagekit.list_files(options=options)[
+        'response']  # Get response from imagekit
+    random.shuffle(images)  # randomize the list
+
     return jsonify(images)  # returning JSON as the API response
 
-
 # Generate preferred style
+
+
 def generateResult(dataset):
     # dataset: ["style1", "style2", "style3", ...]
     # an array with selected styles
@@ -86,17 +105,26 @@ def generateResult(dataset):
 def generatePageData(style):
     # Gets images and style recommendations
     result = Suggestion.query.filter_by(styles=style).first()
-    photo = Images.query.filter_by(tags=style).limit(3).all()
+    searchQuery = "{}".format(style)
+
+    # Fetch file options
+    options = {
+        'limit': 3,
+        'tags': style,
+    }
+
+    # Get response from imagekit
+    images = imagekit.list_files(options)['response']
 
     data = {
         'content': result,
-        'photo': photo
+        'images': images
     }
 
     return data
 
 
-@app.route('/generate_result', methods=['POST'])
+@app.route('/results', methods=['POST'])
 def index():
 
     # Get data from the request
