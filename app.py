@@ -27,6 +27,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 from imagekitio import ImageKit
 
+load_dotenv()
+
 app = Flask(__name__)
 
 app.secret_key = os.getenv('SECRET_KEY')
