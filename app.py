@@ -58,11 +58,11 @@ def getImage():
 
     # Fetch file options
     options = {
-        'path': '/elysian',
+        path: '/elysian',
     }
 
-    images = imagekit.list_files(options=options)[
-        'response']  # Get response from imagekit
+    # Get response from imagekit
+    images = imagekit.list_files(options)['response']
     random.shuffle(images)  # randomize the list
 
     return jsonify(images)  # returning JSON as the API response
