@@ -112,13 +112,13 @@ def generatePageData(style):
     searchQuery = "{}".format(style)
 
     # Fetch file options
-    options = {
-        'limit': 3,
-        'tags': style,
-    }
+    options = ListAndSearchFileRequestOptions(
+        limit=3,
+        tags=style,
+    )
 
     # Get response from imagekit
-    images = imagekit.list_files(options)['response']
+    images = imagekit.list_files(options=options).response_metadata.raw
 
     data = {
         'content': result,
