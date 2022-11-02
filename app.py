@@ -58,7 +58,7 @@ def getImage():
 
     # Fetch file options
     options = {
-        path: '/elysian',
+        'path': '/elysian',
     }
 
     # Get response from imagekit
