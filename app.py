@@ -26,6 +26,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 from imagekitio import ImageKit
+from imagekitio.models.ListAndSearchFileRequestOptions import ListAndSearchFileRequestOptions
 
 load_dotenv()
 
@@ -57,12 +58,12 @@ imagekit = ImageKit(
 def getImage():
 
     # Fetch file options
-    options = {
-        'path': '/elysian',
-    }
+    options = ListAndSearchFileRequestOptions(
+        path='/elysian',
+    )
 
     # Get response from imagekit
-    images = imagekit.list_files(options)['response']
+    images = imagekit.list_files(options=options).response_metadata.raw
     random.shuffle(images)  # randomize the list
 
     return jsonify(images)  # returning JSON as the API response
