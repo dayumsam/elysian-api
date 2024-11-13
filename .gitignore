@@ -1,5 +1,5 @@
 __pycache__/
-.venv/
+venv/
 styles/
 flask_session/
 .env
